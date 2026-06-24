@@ -1,0 +1,20 @@
+name: Deploy to Staging
+
+on:
+  workflow_dispatch:
+
+jobs:
+  my_job:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install Dependencies
+        run: npm install
+
+    
