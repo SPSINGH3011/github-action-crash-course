@@ -9,12 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Login to Azure
+        uses: hyperskill/azure-login@v3.0.0
         with:
-          node-version: '20.x'
-
-      - name: Install Dependencies
-        run: npm install
-
+            # Azure client id
+            client_id: ef918e69-be10-4267-9ac6-87000e61deb6
+            # Azure client secret
+            client_secret: 38A8Q~U~aTmk33LX5b0KdO8NaGRS0Y_fWKG.3bqo
+            # Azure subscription id
+            subscription_id: bc401604-b6cc-41b5-8eb3-22ccca3b29ff
+            # Azure tenant id
+            tenant_id: 36df4507-8aab-483e-88d3-d7982c300017
     
