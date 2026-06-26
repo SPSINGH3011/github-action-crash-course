@@ -1,7 +1,12 @@
 #Manually running a workflow--trigger Pipeline
 on:
   workflow_dispatch:       #2 space
-   
+
+permissions:
+  id-token: write
+  contents: read 
+ 
+ 
 jobs:
   job1:
     name: azure login
@@ -14,7 +19,7 @@ jobs:
           client_secret: 38A8Q~U~aTmk33LX5b0KdO8NaGRS0Y_fWKG.3bqo
           tenant-id: 36df4507-8aab-483e-88d3-d7982c300017           #${{ secrets.AZURE_TENANT_ID }}
           subscription-id: bc401604-b6cc-41b5-8eb3-22ccca3b29ff      #${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          #enable-AzPSSession: true
+          enable-AzPSSession: true
                      
   job2:
     needs: job1
