@@ -15,11 +15,14 @@ jobs:
       - name: Azure login
         uses: hyperskill/azure-login@v3.0.0
         with:
-          client-id: "ef918e69-be10-4267-9ac6-87000e61deb6"          #${{ secrets.AZURE_CLIENT_ID }}
-          client_secret: "38A8Q~U~aTmk33LX5b0KdO8NaGRS0Y_fWKG.3bqo"
-          tenant-id: "36df4507-8aab-483e-88d3-d7982c300017"           #${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: "bc401604-b6cc-41b5-8eb3-22ccca3b29ff"      #${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          enable-AzPSSession: true
+          "clientId": "ef918e69-be10-4267-9ac6-87000e61deb6"         #${{ secrets.AZURE_CLIENT_ID }}
+          "clientSecret": "38A8Q~U~aTmk33LX5b0KdO8NaGRS0Y_fWKG.3bqo"
+          "tenantId": "36df4507-8aab-483e-88d3-d7982c300017"          #${{ secrets.AZURE_TENANT_ID }}
+          "subscriptionId": "bc401604-b6cc-41b5-8eb3-22ccca3b29ff"     #${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          # enable-AzPSSession: true
+
+
+
                      
   job2:
     needs: job1
