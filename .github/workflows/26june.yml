@@ -1,57 +1,44 @@
-#Manually running a workflow--trigger Pipeline
+name: Terraform Pipeline
+
 on:
-  workflow_dispatch:       #2 space
+  workflow_dispatch:
 
 permissions:
   id-token: write
-  contents: read 
- 
- 
+  contents: read
+
 jobs:
-  job1:
-    name: azure login
+  terraform:
+    name: Azure Login and Terraform
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Azure login
-        uses: hyperskill/azure-login@v3.0.0
+        uses: azure/login@v2
         with:
-          "clientId": "ef918e69-be10-4267-9ac6-87000e61deb6"         #${{ secrets.AZURE_CLIENT_ID }}
-          "clientSecret": "38A8Q~U~aTmk33LX5b0KdO8NaGRS0Y_fWKG.3bqo"
-          "tenantId": "36df4507-8aab-483e-88d3-d7982c300017"          #${{ secrets.AZURE_TENANT_ID }}
-          "subscriptionId": "bc401604-b6cc-41b5-8eb3-22ccca3b29ff"     #${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          # enable-AzPSSession: true
+          client-id: "ef918e69-be10-4267-9ac6-87000e61deb6"
+          tenant-id: "36df4507-8aab-483e-88d3-d7982c300017"
+          subscription-id: "bc401604-b6cc-41b5-8eb3-22ccca3b29ff"
 
-
-
-                     
-  job2:
-    needs: job1
-    name: terraform install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: hashicorp/setup-terraform@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: "1.14.6"
-        
-  job3:
-    needs: job2
-    name: terraform command
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Terraform init
         run: terraform init
 
+      - name: Terraform fmt
+        run: terraform fmt -check
 
-      - name:  fmt
-        run: terraform fmt
-
-      - name: validate
+      - name: Terraform validate
         run: terraform validate
 
-
-      - name:  plan
+      - name: Terraform plan
         run: terraform plan
 
-      - name: apply
+      - name: Terraform apply
         run: terraform apply -auto-approve
-
