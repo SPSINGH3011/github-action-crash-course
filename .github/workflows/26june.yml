@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: hashicorp/setup-terraform@v4
         with:
-        terraform_version: "1.14.6"
+          terraform_version: "1.14.6"
         
   job3:
     needs: job2
