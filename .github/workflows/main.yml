@@ -1,1 +1,9 @@
-CI: terraform
+name: Terraform Pipeline 26 June
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: Azure Login and Terraform
+    runs-on: ubuntu-latest
